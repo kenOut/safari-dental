@@ -1,0 +1,16 @@
+# AI and design tooling (local only)
+.agent/
+.agents/
+.claude/
+.gemini/
+.impeccable/
+.taste-skill/
+.mcp.json
+skills-lock.json
+
+# browser test output and screenshots
+.playwright-mcp/
+shots/
+
+# original full-size downloads from the old site (the site uses img/)
+source-images/
