@@ -58,8 +58,8 @@ button { font: inherit; cursor: pointer; }
 /* ---------- buttons ---------- */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 0 26px; border-radius: 12px;
   font: 600 16px/1 var(--body); border: 1.5px solid transparent; transition: background .3s var(--ease), color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease); white-space: nowrap; }
-.btn--primary { background: var(--accent); color: #fff; box-shadow: 0 12px 24px -12px rgba(24, 122, 65, .7); }
-.btn--primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 16px 30px -12px rgba(24, 122, 65, .75); }
+.btn--primary { background: var(--accent); color: #fff; box-shadow: 0 10px 22px -12px rgba(14, 42, 28, .45); }
+.btn--primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 14px 28px -12px rgba(14, 42, 28, .5); }
 .btn--ghost { border-color: rgba(14, 42, 28, .18); color: var(--ink); background: #fff; }
 .btn--ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 .btn--light { background: #fff; color: var(--ink); }
