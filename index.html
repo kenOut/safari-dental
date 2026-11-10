@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en" data-type="service" data-radius="soft" data-buttons="arrow" data-motion>
 <head>
 <meta charset="utf-8">
@@ -39,6 +39,7 @@
 }
 </style>
 <link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/motion.css">
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
 <script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
 <link rel="modulepreload" href="assets/moments/moments.js">
@@ -171,22 +172,22 @@
       </div>
       <div class="grid">
         <a class="tile tile--portrait span-3" href="our-team.html#zaher-safadi">
-          <div class="tile__media"><img src="img/dr-zaher.webp" alt="Dr Zaher Safadi in a white coat" loading="lazy" data-source="client" data-subject="portrait"></div>
+          <div class="tile__media"><img style="view-transition-name: doc-zaher-safadi" src="img/dr-zaher.webp" alt="Dr Zaher Safadi in a white coat" loading="lazy" data-source="client" data-subject="portrait"></div>
           <p class="tile__name">Dr Zaher Safadi</p>
           <p class="tile__facts">Dental surgeon, aesthetic dentistry</p>
         </a>
         <a class="tile tile--portrait span-3" href="our-team.html#naa-oyo-glover">
-          <div class="tile__media"><img src="img/dr-glover.webp" alt="Dr Naa Oyo Glover in a white coat" loading="lazy" data-source="client" data-subject="portrait"></div>
+          <div class="tile__media"><img style="view-transition-name: doc-naa-oyo-glover" src="img/dr-glover.webp" alt="Dr Naa Oyo Glover in a white coat" loading="lazy" data-source="client" data-subject="portrait"></div>
           <p class="tile__name">Dr Naa Oyo Glover</p>
           <p class="tile__facts">Dental surgeon, Invisalign</p>
         </a>
         <a class="tile tile--portrait span-3" href="our-team.html#samuel-addo">
-          <div class="tile__media"><img src="img/dr-addo.webp" alt="Dr Samuel Addo in a light blue coat, arms folded" loading="lazy" data-source="client" data-subject="portrait"></div>
+          <div class="tile__media"><img style="view-transition-name: doc-samuel-addo" src="img/dr-addo.webp" alt="Dr Samuel Addo in a light blue coat, arms folded" loading="lazy" data-source="client" data-subject="portrait"></div>
           <p class="tile__name">Dr Samuel Addo</p>
           <p class="tile__facts">Orthodontist, braces and aligners</p>
         </a>
         <a class="tile tile--portrait span-3" href="our-team.html#kwaku-bosompem-acheampong">
-          <div class="tile__media"><img src="img/dr-bosompem.webp" alt="Dr Kwaku Bosompem-Acheampong speaking into a microphone" loading="lazy" data-source="client" data-subject="portrait"></div>
+          <div class="tile__media"><img style="view-transition-name: doc-kwaku-bosompem-acheampong" src="img/dr-bosompem.webp" alt="Dr Kwaku Bosompem-Acheampong speaking into a microphone" loading="lazy" data-source="client" data-subject="portrait"></div>
           <p class="tile__name">Dr Kwaku Bosompem-Acheampong</p>
           <p class="tile__facts">Maxillofacial surgeon</p>
         </a>
@@ -321,5 +322,6 @@
 <script type="module" src="assets/system.js"></script>
 <script type="module" src="assets/motion/motion.js"></script>
 <script type="module" src="assets/layout/layout.js"></script>
+<script type="module" src="js/site-motion.js"></script>
 </body>
 </html>

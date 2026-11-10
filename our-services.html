@@ -39,6 +39,7 @@
 }
 </style>
 <link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/motion.css">
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
 </head>
 <body>
@@ -129,6 +130,23 @@
     </div>
   </section>
 
+  <!-- the implant that builds itself: three screens tall, its panel pinned while js/implant3d.js moves the parts -->
+  <section class="section" id="implant-build" style="--h: 3" aria-labelledby="implant-build-h">
+    <div class="wrap">
+      <div class="implant3d__pin">
+        <div class="implant3d__text">
+          <div class="section-head"><h2 id="implant-build-h">How a dental implant is built</h2><p>Three parts replace one missing tooth, fitted one after another.</p></div>
+          <ol class="implant3d__steps">
+            <li class="implant3d__step is-active"><h3>The titanium post</h3><p>Placed in the jawbone, where the bone grows around it over the following months. It becomes the tooth's new root.</p></li>
+            <li class="implant3d__step"><h3>The abutment</h3><p>A small connector fixed to the post once it has healed. It holds the new tooth.</p></li>
+            <li class="implant3d__step"><h3>The crown</h3><p>A new tooth made to match the shape and colour of your own teeth, fixed on top.</p></li>
+          </ol>
+        </div>
+        <div class="implant3d__stage"><img src="img/surgery-team.webp" alt="Two Safadi surgeons in green gowns operating on a patient" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="smile" aria-labelledby="smile-h">
     <div class="wrap grid grid--top">
       <div class="span-5">
@@ -178,5 +196,7 @@
 <script type="module" src="assets/system.js"></script>
 <script type="module" src="assets/motion/motion.js"></script>
 <script type="module" src="assets/layout/layout.js"></script>
+<script type="module" src="js/site-motion.js"></script>
+<script type="module" src="js/implant3d.js"></script>
 </body>
 </html>

@@ -39,6 +39,7 @@
 }
 </style>
 <link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/motion.css">
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
 </head>
 <body>
@@ -106,23 +107,23 @@
       <div class="section-head"><h2 id="team-h">The clinic team</h2><p>Each doctor's training, as they list it.</p></div>
       <ul class="doctors">
           <li class="doctor" id="zaher-safadi">
-            <img src="img/dr-zaher.webp" alt="Dr Zaher Safadi in a white coat" loading="lazy" data-source="client" data-subject="portrait">
+            <img style="view-transition-name: doc-zaher-safadi" src="img/dr-zaher.webp" alt="Dr Zaher Safadi in a white coat" loading="lazy" data-source="client" data-subject="portrait">
             <div><p class="tile__name">Dr Zaher Safadi</p><p class="doctor__role">Dental surgeon</p><p>Mastership in aesthetic dentistry, British Academy of Restorative Dentistry.</p></div>
           </li>
           <li class="doctor" id="naa-oyo-glover">
-            <img src="img/dr-glover.webp" alt="Dr Naa Oyo Glover in a white coat" loading="lazy" data-source="client" data-subject="portrait">
+            <img style="view-transition-name: doc-naa-oyo-glover" src="img/dr-glover.webp" alt="Dr Naa Oyo Glover in a white coat" loading="lazy" data-source="client" data-subject="portrait">
             <div><p class="tile__name">Dr Naa Oyo Glover</p><p class="doctor__role">Dental surgeon</p><p>Invisalign accreditation, 2025.</p></div>
           </li>
           <li class="doctor" id="samuel-addo">
-            <img src="img/dr-addo.webp" alt="Dr Samuel Addo in a light blue coat, arms folded" loading="lazy" data-source="client" data-subject="portrait">
+            <img style="view-transition-name: doc-samuel-addo" src="img/dr-addo.webp" alt="Dr Samuel Addo in a light blue coat, arms folded" loading="lazy" data-source="client" data-subject="portrait">
             <div><p class="tile__name">Dr Samuel Addo</p><p class="doctor__role">Orthodontist</p><p>Diploma in orthodontics and dentofacial orthopaedics, City of London Dental Academy.</p></div>
           </li>
           <li class="doctor" id="kwaku-bosompem-acheampong">
-            <img src="img/dr-bosompem.webp" alt="Dr Kwaku Bosompem-Acheampong speaking into a microphone" loading="lazy" data-source="client" data-subject="portrait">
+            <img style="view-transition-name: doc-kwaku-bosompem-acheampong" src="img/dr-bosompem.webp" alt="Dr Kwaku Bosompem-Acheampong speaking into a microphone" loading="lazy" data-source="client" data-subject="portrait">
             <div><p class="tile__name">Dr Kwaku Bosompem-Acheampong</p><p class="doctor__role">Specialist maxillofacial surgeon</p><p>Also at 37 Military Hospital, Accra.</p></div>
           </li>
           <li class="doctor" id="hamza-basheer">
-            <img src="img/dr-basheer.webp" alt="Dr Hamza Basheer in a navy suit and red tie" loading="lazy" data-source="client" data-subject="portrait">
+            <img style="view-transition-name: doc-hamza-basheer" src="img/dr-basheer.webp" alt="Dr Hamza Basheer in a navy suit and red tie" loading="lazy" data-source="client" data-subject="portrait">
             <div><p class="tile__name">Dr Hamza Basheer</p><p class="doctor__role">Primary care physician</p><p>General health check-ups and care at the same clinic.</p></div>
           </li>
       </ul>
@@ -177,5 +178,6 @@
 <script type="module" src="assets/system.js"></script>
 <script type="module" src="assets/motion/motion.js"></script>
 <script type="module" src="assets/layout/layout.js"></script>
+<script type="module" src="js/site-motion.js"></script>
 </body>
 </html>

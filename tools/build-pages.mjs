@@ -1,4 +1,4 @@
-﻿// Builds the inner pages of the Safadi site from shared parts (head, nav, footer).
+// Builds the inner pages of the Safadi site from shared parts (head, nav, footer).
 // Run from the project folder:  node tools/build-pages.mjs
 // index.html is written by hand; edit the shared parts here and run this again for every other page.
 import { writeFileSync } from 'node:fs';
@@ -49,6 +49,7 @@ const head = (p) => `<!doctype html>
 }
 </style>
 <link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/motion.css">
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
 </head>
 <body>
@@ -100,7 +101,7 @@ const nav = (p) => `<header class="nav">
 </header>
 `;
 
-const footer = () => `<footer class="footer closing footer--dark ground-inverse" id="contact" aria-labelledby="close-h">
+const footer = (extraScripts = '') => `<footer class="footer closing footer--dark ground-inverse" id="contact" aria-labelledby="close-h">
   <div class="wrap">
     <div class="closing__cta close--type">
       <div class="section-head">
@@ -135,6 +136,7 @@ const footer = () => `<footer class="footer closing footer--dark ground-inverse"
 <script type="module" src="assets/system.js"></script>
 <script type="module" src="assets/motion/motion.js"></script>
 <script type="module" src="assets/layout/layout.js"></script>
+<script type="module" src="js/site-motion.js"></script>${extraScripts}
 </body>
 </html>
 `;
@@ -202,6 +204,7 @@ const pages = [];
 // ---------- our-services.html
 pages.push({
   file: 'our-services.html',
+  scripts: '\n<script type="module" src="js/implant3d.js"></script>',
   title: 'Dental treatments: Safadi Dental Clinic, Spintex, Accra',
   description: 'General and children\'s dentistry, implants, crowns, braces, Invisalign, whitening and emergency care at Spintex Plaza, Accra.',
   body: hero({ h1: 'Dental treatments in Spintex, Accra', lead: 'From routine check-ups to implant surgery and Invisalign, every treatment happens at our clinic at Spintex Plaza.', img: 'surgery-team.webp', alt: 'Two Safadi surgeons in green gowns operating on a patient', pos: '45% 50%' }) + `
@@ -233,6 +236,23 @@ pages.push({
     </div>
   </section>
 
+  <!-- the implant that builds itself: three screens tall, its panel pinned while js/implant3d.js moves the parts -->
+  <section class="section" id="implant-build" style="--h: 3" aria-labelledby="implant-build-h">
+    <div class="wrap">
+      <div class="implant3d__pin">
+        <div class="implant3d__text">
+          <div class="section-head"><h2 id="implant-build-h">How a dental implant is built</h2><p>Three parts replace one missing tooth, fitted one after another.</p></div>
+          <ol class="implant3d__steps">
+            <li class="implant3d__step is-active"><h3>The titanium post</h3><p>Placed in the jawbone, where the bone grows around it over the following months. It becomes the tooth's new root.</p></li>
+            <li class="implant3d__step"><h3>The abutment</h3><p>A small connector fixed to the post once it has healed. It holds the new tooth.</p></li>
+            <li class="implant3d__step"><h3>The crown</h3><p>A new tooth made to match the shape and colour of your own teeth, fixed on top.</p></li>
+          </ol>
+        </div>
+        <div class="implant3d__stage"><img src="img/surgery-team.webp" alt="Two Safadi surgeons in green gowns operating on a patient" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="smile" aria-labelledby="smile-h">
     <div class="wrap grid grid--top">
       <div class="span-5">
@@ -250,7 +270,7 @@ pages.push({
 
 // ---------- our-team.html
 const doc = (id, img, alt, name, role, line) => `<li class="doctor" id="${id}">
-            <img src="img/${img}" alt="${alt}" loading="lazy" data-source="client" data-subject="portrait">
+            <img style="view-transition-name: doc-${id}" src="img/${img}" alt="${alt}" loading="lazy" data-source="client" data-subject="portrait">
             <div><p class="tile__name">${name}</p><p class="doctor__role">${role}</p><p>${line}</p></div>
           </li>`;
 pages.push({
@@ -402,7 +422,7 @@ pages.push({
 });
 
 for (const p of pages) {
-  const html = head(p) + `<!-- type: service. Built by tools/build-pages.mjs from the shared parts; the deal is the home page's (index.html). -->\n` + nav(p) + `\n<main id="top">\n${p.body}</main>\n\n` + footer();
+  const html = head(p) + `<!-- type: service. Built by tools/build-pages.mjs from the shared parts; the deal is the home page's (index.html). -->\n` + nav(p) + `\n<main id="top">\n${p.body}</main>\n\n` + footer(p.scripts || '');
   writeFileSync(p.file, html);
   console.log('wrote', p.file);
 }

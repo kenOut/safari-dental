@@ -1,0 +1,88 @@
+/* Motion layer for the Safadi site: page transitions, reveals and the implant section.
+   Every animation here stands still under prefers-reduced-motion. */
+
+:root { --rv-ease: cubic-bezier(.22, 1, .36, 1); }
+
+/* ---------- 5. Page transitions (cross-document View Transitions; Chrome, Edge, Safari 18.2+) ---------- */
+@view-transition { navigation: auto; }
+
+.nav { view-transition-name: site-nav; }
+::view-transition-group(site-nav) { animation: none; }
+
+::view-transition-old(root) { animation: 260ms var(--rv-ease) both vt-out; }
+::view-transition-new(root) { animation: 520ms var(--rv-ease) 60ms both vt-in; }
+@keyframes vt-out { to { opacity: 0; transform: translateY(-16px); } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(28px); } }
+
+/* a doctor's portrait carries over from the home page to the team page */
+::view-transition-group(*) { animation-duration: 560ms; animation-timing-function: var(--rv-ease); }
+::view-transition-image-pair(*) { isolation: auto; }
+[style*="view-transition-name: doc-"] { contain: paint; }
+
+/* a link to one doctor or one treatment lands with the row clear of the fixed bar */
+.doctor[id], .rows > li[id] { scroll-margin-top: calc(var(--nav, 72px) + var(--s-6)); }
+
+/* ---------- 6. Smooth scrolling (Lenis) ---------- */
+html.lenis, html.lenis body { height: auto; }
+.lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
+.lenis [data-lenis-prevent] { overscroll-behavior: contain; }
+
+/* ---------- 6. Reveals (classes set by js/site-motion.js, so nothing hides without script) ---------- */
+.rv-head .rv-w { display: inline-block; overflow: clip; vertical-align: bottom; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.rv-head .rv-w > span { display: inline-block; transform: translateY(105%); transition: transform 900ms var(--rv-ease); transition-delay: calc(var(--i, 0) * 45ms); }
+.rv-head.is-in .rv-w > span { transform: none; }
+
+.rv-fade { opacity: 0; transform: translateY(14px); transition: opacity 800ms var(--rv-ease) 260ms, transform 800ms var(--rv-ease) 260ms; }
+.rv-fade.is-in { opacity: 1; transform: none; }
+
+.rv-photo { filter: blur(14px) saturate(0.6); transform: scale(1.07); opacity: 0.6;
+  transition: filter 1300ms var(--rv-ease), transform 1500ms var(--rv-ease), opacity 900ms var(--rv-ease); }
+.rv-photo.is-in { filter: none; transform: none; opacity: 1; }
+
+.rv-list > .rv-row { opacity: 0; transform: translateY(18px); transition: opacity 700ms var(--rv-ease), transform 700ms var(--rv-ease); transition-delay: calc(120ms + var(--i, 0) * 70ms); }
+.rv-list.is-in > .rv-row { opacity: 1; transform: none; }
+
+/* ---------- 2. The implant that builds itself (our-services.html) ---------- */
+#implant-build > .wrap { height: calc(var(--h, 3) * 100svh - var(--padt) - var(--padb) - var(--bar, 0px)); display: block; }
+.implant3d__pin { position: sticky; top: calc(var(--nav, 72px) + var(--s-6)); height: calc(100svh - var(--nav, 72px) - var(--s-6) * 2);
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: center; }
+.implant3d__text { grid-column: 1 / span 5; }
+.implant3d__steps { list-style: none; margin: var(--s-7) 0 0; padding: 0; display: grid; gap: var(--s-5); counter-reset: step; }
+.implant3d__step { position: relative; padding-left: 56px; opacity: 0.38; transition: opacity 500ms var(--rv-ease), transform 500ms var(--rv-ease); transform: translateX(-6px); }
+.implant3d__step::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: 0; width: 36px; height: 36px; border-radius: 50%;
+  display: grid; place-items: center; font: 500 15px/1 var(--font-text); border: 1px solid var(--line); color: var(--ink); transition: background 500ms, color 500ms, border-color 500ms; }
+.implant3d__step.is-active { opacity: 1; transform: none; }
+.implant3d__step.is-active::before { background: var(--p-action); border-color: var(--p-action); color: var(--p-action-ink); }
+.implant3d__step h3 { font: 500 var(--t-card)/1.3 var(--font-text); letter-spacing: -0.01em; margin: 0 0 var(--s-2); }
+.implant3d__step p { margin: 0; max-width: 46ch; }
+.implant3d__stage { grid-column: 6 / span 7; position: relative; height: 100%; min-height: 0; border-radius: var(--r-lg); overflow: clip;
+  background: radial-gradient(120% 90% at 50% 40%, #ffffff 0%, var(--p-surface) 70%); }
+.implant3d__stage > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 600ms; }
+.implant3d__stage.is-3d > img { opacity: 0; }
+.implant3d__canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; }
+
+@media (max-width: 1023px) {
+  .implant3d__pin { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); align-items: stretch; row-gap: var(--s-5); }
+  .implant3d__text, .implant3d__stage { grid-column: 1; }
+  .implant3d__stage { grid-row: 2; }
+  .implant3d__steps { margin-top: var(--s-4); position: relative; min-height: 6.5em; }
+  .implant3d__step { position: absolute; inset: 0 0 auto 0; transform: translateY(8px); opacity: 0; }
+  .implant3d__step.is-active { opacity: 1; transform: none; }
+}
+@media (max-width: 639px) {
+  #implant-build { --hm: 3; }
+  #implant-build > .wrap { height: calc(3 * 100lvh - var(--padt) - var(--padb) - var(--bar, 0px)); }
+  .implant3d__pin { top: calc(var(--nav, 56px) + var(--s-3)); height: calc(100svh - var(--nav, 56px) - var(--s-5) - var(--bar, 0px)); }
+  .implant3d__text .section-head p { display: none; }
+}
+
+/* ---------- reduced motion: everything stands as written ---------- */
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  .rv-head .rv-w > span, .rv-fade, .rv-photo, .rv-list > .rv-row { transform: none !important; opacity: 1 !important; filter: none !important; transition: none !important; }
+  #implant-build { --h: 1 !important; --hm: 2 !important; }
+  #implant-build > .wrap { height: 100%; }
+  .implant3d__pin { position: static; height: 100%; }
+  .implant3d__step { opacity: 1; transform: none; position: relative; inset: auto; }
+  .implant3d__steps { min-height: 0; }
+}
